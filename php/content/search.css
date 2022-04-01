@@ -1,0 +1,11 @@
+#recherche {
+    text-align: center;
+    height: 50px;
+    display: block;
+}
+
+#search {
+    display: inline-block;
+    text-align: center;
+    font-size: 50px;
+}

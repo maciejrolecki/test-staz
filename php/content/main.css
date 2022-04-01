@@ -1,0 +1,78 @@
+/**
+ Une en-tête de site, qui reprendra un titre de votre site ainsi qu’un lien "Re-
+cherche"
+Un pied de page qui reprend votre nom, l’année et la référence du cours
+*/
+/* CSS commun à tout le site */
+#titleWebsite {
+    text-align: center;
+    background-color: lightgray;
+    padding: 10px;
+    margin: 0;
+    border-bottom: lightslategray solid 1px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+#global {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 2.5rem; /* Footer height */
+}
+
+a {
+    color: #000;
+    text-decoration: none
+}
+
+img {
+    display: block;
+    margin: 0;
+}
+
+nav#main-nav > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+nav#main-nav ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+nav#main-nav ul > li {
+    margin: 0 10px
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0;
+    font-size: medium;
+    border-top: 1px solid black;
+    width: 100%;
+    background-color: lightgray;
+    text-align: center;
+}
+
+#logo {
+    width: 120px;
+}
+
+.titleGamePage {
+    border-bottom: black 1px solid;
+}
