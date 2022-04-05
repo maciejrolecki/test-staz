@@ -5,7 +5,7 @@ function pre($a){
     echo '</pre>';
 }
 function homeURL($a=""){
-    return '/'.$a;
+    return '/php/'.$a;
 }
 require "C/Router.php";
 routeRequest();
