@@ -5,7 +5,7 @@ require "M/Category.php";
 function displayHome()
 {
     $p = new Product();
-    $products = $p->getAllProducts();
+    $products = $p->getAllProductsRandom();
     require "V/viewHome.php";
 }
 
@@ -72,7 +72,8 @@ function displayCategory()
         require "V/viewError.php";
     }
 }
-function displayAddCategory()
+
+function viewAddCategory()
 {
     try {
         require "V/viewAddCategory.php";
@@ -80,11 +81,74 @@ function displayAddCategory()
         require "V/viewError.php";
     }
 }
-function displayAddProduct()
+function viewAddProduct()
 {
     try {
+
+        $c = new Category();
+        $cats = $c->getAllCategories();
         require "V/viewAddProduct.php";
     } catch (Exception $e) {
         require "V/viewError.php";
     }
+}
+function addCategory()
+{
+    try {
+        if (empty($_POST["name"])) {
+
+            require "V/viewError.php";
+        } else {
+            $n =  $_POST['name'];
+            $name = test_input($n);
+            $c = new Category();
+            $c->addCategory($name);
+            displayCategory();
+        }
+    } catch (Exception $e) {
+        require "V/viewError.php";
+    }
+}
+function addProduct()
+{
+    try {
+        if (empty($_POST['name'])) {
+            require "V/viewError.php";
+        } else {
+            $categories = [];
+            $c = new Category();
+            $x = 1;
+            $nCat = $c->getLastId()[0]['id'];
+            $n =  $_POST['name'];
+            $name = test_input($n);
+            $s =  $_POST['status'];
+            $status = test_input($s);
+            $d =  $_POST['description'];
+            $description = test_input($d);
+            $image =  $_POST['image'];
+            while ($x <= $nCat) {
+                if (!empty($_POST[strval($x)])) {
+                    array_push($categories, $x);
+                }
+                $x++;
+            }
+            $p = new Product();
+            if($p->addProduct($name, $status, $description, $image)){
+                print_r("product already added");
+            }
+            $id = $p->getProductId($name);
+            $p->linkCatToProd($id[0]['id'], $categories);
+            displayAllProducts();
+        }
+    } catch (Exception $e) {
+        require "V/viewError.php";
+    }
+}
+
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }

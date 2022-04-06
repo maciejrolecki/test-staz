@@ -12,8 +12,11 @@ function routeRequest()
         'product' => 'displayProduct',
         'category' => 'displayCategory',
         'categories' => 'displayCategory',
-        'addCategory' => 'displayAddCategory',
-        'addProduct' => 'displayAddProduct'
+        'viewAddCategory' => 'viewAddCategory',
+        'viewAddProduct' => 'viewAddProduct',
+        'addCategory' => 'addCategory',
+        'addProduct' => 'addProduct'
+
     );
     $action = !empty($_GET['action']) ? $_GET['action'] : DEFAULT_ACTION;
     $function = !empty($routes[$action]) ? $routes[$action] : $routes['home'];

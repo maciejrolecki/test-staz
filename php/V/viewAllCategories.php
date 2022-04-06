@@ -1,7 +1,7 @@
 <?php $title = "Categories"; ?>
 <?php ob_start(); ?>
     <div id="main" class="container">
-    <a href="addCategory"><button class="button">Add Category</button></a>
+    <a href="viewAddCategory"><button class="button">Add Category</button></a>
 
 <?php if (!empty($categories)) : ?>
     <?php foreach ($categories as $category) : ?>

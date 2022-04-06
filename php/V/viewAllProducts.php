@@ -1,7 +1,7 @@
 <?php $title = "All Products"; ?>
 <?php ob_start(); ?>
 <div class="container">
-<a href="addProduct"><button class="button">Add Product</button></a>
+<a href="viewAddProduct"><button class="button">Add Product</button></a>
     <?php if (!empty($products)) : ?>
         <?php foreach ($products as $product) : ?>
             <a href="product/<?= $product['id'] ?>">

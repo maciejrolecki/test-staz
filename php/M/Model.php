@@ -1,13 +1,11 @@
 <?php
-
 abstract class Model
 {
     protected function executeRequest($sql, $params = null)
     {
         $db = new PDO(
             'mysql:host=localhost;dbname=test;charset=utf8',
-            'root',
-            ''
+            'root', ''
         );
         try {
             if ($params == null) {              // exécution directe
