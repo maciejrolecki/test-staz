@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8"/>
@@ -20,23 +20,23 @@
     <link rel="stylesheet" href="<?= homeURL("content/games.css") ?>"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <title><?= $title = "GameReview" ?></title>
+    <title><?= $title = "Products" ?></title>
 </head>
 
 <body>
 <div id="global">
     <header>
         <a href="<?= homeURL("home") ?>">
-            <h1 id="titleWebsite">game review website</h1>
+            <h1 id="titleWebsite">Product preview</h1>
         </a>
         <nav id="main-nav">
             <div class="container">
-                <a href="<?= homeURL("home") ?>"><img id="logo" src="<?= homeURL("content/logo.jpg") ?>" alt="logo"></a>
+                <a href="<?= homeURL("home") ?>"><img id="logo" src="<?= homeURL("content/logo.png") ?>" alt="logo"></a>
                 <ul>
                     <li><a href="<?= homeURL("home") ?>">Home</a></li>
-                    <li><a href="<?= homeURL("games") ?>">All Games</a></li>
+                    <li><a href="<?= homeURL("products") ?>">All Products</a></li>
                     <li><a href="<?= homeURL("search") ?>">Search</a></li>
-                    <li><a href="<?= homeURL("genre") ?>">Browse</a></li>
+                    <li><a href="<?= homeURL("categories") ?>">All Categories</a></li>
                 </ul>
         </nav>
     </header>
@@ -44,7 +44,10 @@
         <?= $content ?>
     </main> <!-- #contenu -->
     <footer id="piedBlog">
-        Rolecki - ESI - WEBR4 - 2021
+        <?php $copyYear = 2022; // Set your website start date
+    $curYear = date('Y'); // Keeps the second year updated
+      echo $copyYear . (($copyYear != $curYear) ? '-' . $curYear : '');
+  ?> Copyright mrolecki
     </footer>
 </div> <!-- #global -->
 <script>

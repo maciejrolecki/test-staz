@@ -1,15 +1,15 @@
-<?php $title = "Accueil"; ?>
+<?php $title = "Home screen"; ?>
 <?php ob_start(); ?>
     <div id="main" class="">
         <div class="container">
             <div class="slider-game">
-                <?php if (!empty($games)): ?>
-                    <?php foreach ($games as $game) : ?>
-                        <a href="game/<?= $game['id'] ?>">
+                <?php if (!empty($products)): ?>
+                    <?php foreach ($products as $product) : ?>
+                        <a href="product/<?= $product['id'] ?>">
                             <article>
                                 <img class="image_cover_pres"
-                                     src="<?php echo $game['cover'] ?>" alt="<?php echo $game['title'] ?> cover">
-                                <h3 class="slide-title-container"><?= $game['title'] ?></h3>
+                                     src="<?php echo $product['image'] ?>" alt="<?php echo $product['name'] ?> image">
+                                <h3 class="slide-title-container"><?= $product['name'] ?></h3>
                             </article>
                         </a>
                     <?php endforeach; ?>

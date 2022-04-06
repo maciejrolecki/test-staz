@@ -6,11 +6,14 @@ function routeRequest()
     define("DEFAULT_ACTION", "home");
     //Permet de choisir une action si aucune n'est renseignée dans le GET
     $routes = array(
-        'home' => 'displayAccueil',
-        'games' => 'displayAllGames',
+        'home' => 'displayHome',
+        'products' => 'displayAllProducts',
         'search' => 'displaySearch',
-        'game' => 'displayGame',
-        'genre' => 'displayGenre'
+        'product' => 'displayProduct',
+        'category' => 'displayCategory',
+        'categories' => 'displayCategory',
+        'addCategory' => 'displayAddCategory',
+        'addProduct' => 'displayAddProduct'
     );
     $action = !empty($_GET['action']) ? $_GET['action'] : DEFAULT_ACTION;
     $function = !empty($routes[$action]) ? $routes[$action] : $routes['home'];
@@ -18,9 +21,9 @@ function routeRequest()
         if (function_exists($function)) {
             $function();
         } else {
-            require "V/VueError.php";
+            require "V/viewError.php";
         }
     } catch (Exception $e) {
-        require "V/VueError.php";
+        require "V/viewError.php";
     }
 }

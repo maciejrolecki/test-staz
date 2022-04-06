@@ -1,89 +1,90 @@
 <?php
-require "M/Game.php";
-require "M/Genre.php";
+require "M/Product.php";
+require "M/Category.php";
 
-function displayAccueil()
+function displayHome()
 {
-    $g = new Game();
-    $games = $g->getRandomGamesHighScore();
-    require "V/vueAccueil.php";
+    $p = new Product();
+    $products = $p->getAllProducts();
+    require "V/viewHome.php";
 }
 
-function displayAllGames()
+function displayAllProducts()
 {
     try {
-        $g = new Game();
-        $games = $g->getAllGames();
-        require "V/vueAllGames.php";
+        $p = new Product();
+        $products = $p->getAllProducts();
+        require "V/viewAllProducts.php";
     } catch (PDOException $e) {
-        require "V/VueError.php";
+        require "V/viewError.php";
     }
 }
 
 function displaySearch()
 {
     try {
-        $g = new Game();
+        $p = new Product();
         $lookup = !empty($_GET['id']) ? $_GET['id'] : "";
-        $games = $g->getSearch($lookup);
+        $products = $p->getSearch($lookup);
         if (!empty($_GET['type']) && $_GET['type'] === 'json') {
             header('Content-Type: application/json');
-            echo json_encode($games);
+            echo json_encode($products);
         } else {
-            require "V/vueSearch.php";
+            require "V/viewSearch.php";
         }
     } catch (PDOException $e) {
-        require "V/VueError.php";
+        require "V/viewError.php";
     }
 }
 
-function displayGame()
+function displayProduct()
 {
     try {
-        $g = new Game();
-        if (!empty($g->getGame($_GET['id']))) {
-            $game = $g->getGame($_GET['id'])[0];
-            $screenshots = $g->getScreenshotsGame($_GET['id']);
-            $releases = $g->getReleases($_GET['id']);
-            $modes = $g->getModes($_GET['id']);
-            $genres = $g->getGenres($_GET['id']);
-            $alt_names = $g->getAlternativeNames($_GET['id']);
-            $arts = $g->getArtwork($_GET['id']);
-            $similar_games = $g->getSimilarGames($_GET['id']);
-            $urls = $g->getURLs($_GET['id']);
-            $videos = $g->getVideos($_GET['id']);
-            require "V/vueGame.php";
+        $p = new Product();
+        if (!empty($p->getProduct($_GET['id']))) {
+            $product = $p->getProduct($_GET['id'])[0];
+            $image = $p->getImageProduct($_GET['id'])[0];
+            $status = $p->getStatus($_GET['id'])[0];
+            $categories = $p->getCategories($_GET['id']);
+            require "V/viewProduct.php";
         } else {
-            require "V/VueError.php";
+            require "V/viewError.php";
         }
     } catch (PDOException $e) {
-        require "V/VueError.php";
+        require "V/viewError.php";
     }
 }
 
-function displayGenre()
+function displayCategory()
 {
-
     try {
-        if(true) {
-            if (!empty($_GET['id'])) {
-                $g = new Genre();
-                $genre = $g->getGenreName($_GET['id'])[0];
-                $games = $g->getGenreGames($_GET['id']);
-                require "V/vueGenreGames.php";
-            } else {
-                $g = new Genre();
-                $genres = $g->getAllGenres();
-                require "V/vueGenres.php";
-            }
-        }else {
-            require "V/VueError.php";
+        if (!empty($_GET['id'])) {
+            $c = new Category();
+            $category = $c->getCategoryName($_GET['id'])[0];
+            $products = $c->getCategoryProducts($_GET['id']);
+            require "V/viewCategoryProducts.php";
+        } else {
+            $c = new Category();
+            $categories = $c->getAllCategories();
+            require "V/viewAllCategories.php";
         }
     } catch (PDOException $e) {
-        require "V/VueError.php";
+        require "V/viewError.php";
     }
 }
-
-
-
-
+function displayAddCategory()
+{
+    try {
+        require "V/viewAddCategory.php";
+    } catch (Exception $e) {
+        require "V/viewError.php";
+    }
+}
+function displayAddProduct()
+{
+    try {
+        require "V/viewAddProduct.php";
+    } catch (Exception $e) {
+        require "V/viewError.php";
+    }
+}
